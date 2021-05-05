@@ -25,7 +25,6 @@ function generateTable(table, data) {
   });
 }
 
-
 TestJS();
 getJSON('', (data) => {
   console.log(data);
@@ -50,4 +49,3 @@ getJSON('http://localhost:8000/api/v1/cities',
     }
   });
 ConsoleLogIt('this workedss  in the bundle');
-
