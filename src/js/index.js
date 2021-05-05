@@ -2,6 +2,30 @@ import TestJS from './TestJs';
 import ConsoleLogIt from './ConsoleLogIt';
 import getJSON from './getJSON';
 
+function generateTableHead(table, data) {
+  const thead = table.createTHead();
+  const row = thead.insertRow();
+  data.forEach((key) => {
+    const th = document.createElement('th');
+    const text = document.createTextNode(key);
+    th.appendChild(text);
+    row.appendChild(th);
+  });
+}
+
+function generateTable(table, data) {
+  data.forEach((element) => {
+    const row = table.insertRow();
+    console.log(element);
+    element.forEach((key) => {
+      const cell = row.insertCell();
+      const text = document.createTextNode(element[key]);
+      cell.appendChild(text);
+    });
+  });
+}
+
+
 TestJS();
 getJSON('', (data) => {
   console.log(data);
@@ -27,26 +51,3 @@ getJSON('http://localhost:8000/api/v1/cities',
   });
 ConsoleLogIt('this workedss  in the bundle');
 
-function generateTableHead(table, data) {
-  const thead = table.createTHead();
-  const row = thead.insertRow();
-  for (const key of data) {
-    const th = document.createElement('th');
-    const text = document.createTextNode(key);
-    th.appendChild(text);
-    row.appendChild(th);
-  }
-}
-
-function generateTable(table, data) {
-  for (const element of data) {
-    const row = table.insertRow();
-    console.log(element);
-    let key;
-    for (key in element) {
-      const cell = row.insertCell();
-      const text = document.createTextNode(element[key]);
-      cell.appendChild(text);
-    }
-  }
-}
